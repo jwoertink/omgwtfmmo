@@ -14,33 +14,46 @@
 		<script src="scripts/game.js"></script>
 		<script src="scripts/game.keyboard.js"></script>
 		<script src="scripts/game.player.js"></script>
+		<script src="scripts/game.script.js"></script>
 		<script type="text/javascript" charset="utf-8">
-			var mapone = [
-			  [{ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}, {ground:1, item:2}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
-			  [{ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}]
-			];
+      var mapone = [
+                      [{ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}, {ground:1, item:2}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1, item:3, onenter:0}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1}, {ground:1, item:2}],
+                      [{ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}, {ground:1, item:2}]
+                   ];
 
+                   var maptwo = [
+                   [{ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}],
+                   [{ground:5, item:2}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5, item:2}],
+                   [{ground:5, item:2}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5, item:2}],
+                   [{ground:5, item:2}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5,item:6,onactivate:2}, {ground:5}, {ground:5}, {ground:5, item:2}],
+                   [{ground:5, item:2}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5, item:2}],
+                   [{ground:5, item:2}, {ground:5}, {ground:5, item:4, onenter:1}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5, item:2}],
+                   [{ground:5, item:2}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5, item:2}],
+                   [{ground:5, item:2}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5}, {ground:5, item:2}],
+                   [{ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}, {ground:5, item:2}]
+                   ];
 
+      var holdingKey = false;
 			// Start game.
-
 			$(window).load(function() {
 			  Game.start(mapone, 0, 0);
-			  $(window).keydown(function(event) {
-					if(Game.controls[event.keyCode] != null) {
-						Game.keyboard.parseInput(event);
-						event.preventDefault;
+			  $(window).keypress(function(event) {
+          var code = (event.keyCode ? event.keyCode : event.which);
+					if(Game.controls[code] != null) {
+					  Game.keyboard.parseInput(event);
+  					event.preventDefault;
 					}
 			  });
 			});

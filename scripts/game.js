@@ -1,8 +1,9 @@
-// jQuery 1.4.2 is required
+// jQuery 1.4.2+ is required
 // Create the main game object
 var Game = {};
 Game.characters = [];
-Game.controls = {40: "down", 39: "right", 38: "up", 37: "left"};
+//w=119 a=97 s=115 d=100 space=32
+Game.controls = {115: "down", 100: "right", 119: "up", 97: "left", 32: 'space'};
 Game.currentMap = null;
 
 // This is for the debug area. could use console later
@@ -36,16 +37,21 @@ Game.screen = {
 
 Game.viewport = {
   x: 0,
-  y: 0
+  y: 0,
+	playerOffsetX: 0,
+	playerOffsetY: 0,
+	overflowTile: 1
 };
 
 Game.tile = {
   draw: function(x, y, tile) {
-   var img = Game.tile.retrieve(tile.ground);
-   Game.handle.drawImage(img, x * 16, y * 16);
-   if(tile.item) {
-     Game.handle.drawImage(Game.tile.retrieve(tile.item), x* 16, y * 16);
-   }
+  	var img = Game.tile.retrieve(tile.ground);
+		var rx = x * 16 + Game.viewport.playerOffsetX;
+		var ry = y * 16 + Game.viewport.playerOffsetY;
+  	Game.handle.drawImage(img, rx, ry);
+  	if(tile.item) {
+    	Game.handle.drawImage(Game.tile.retrieve(tile.item), rx, ry);
+  	}
   },
   images: [],
   store: function(id, imgSrc) {
@@ -80,15 +86,17 @@ Game.tile = {
 
 Game.map = {
   draw: function() {
-    var xPos, yPos;
+    var xPos, yPos, tile;
     var mapX = 0;
     var mapY = 0;
-    var tile;
     
-    Game.debug('drawing map from ' + Game.viewport.x + ',' + Game.viewport.y + ' to ' +  (Game.viewport.x + Game.screen.tilesX) + ',' + (Game.viewport.y + Game.screen.tilesY));
+		var iMax = Game.screen.tilesX + Game.viewport.overflowTile;
+		var jMax = Game.screen.tilesY + Game.viewport.overflowTile;
+
+    //Game.debug('drawing map from ' + Game.viewport.x + ',' + Game.viewport.y + ' to ' +  (Game.viewport.x + Game.screen.tilesX) + ',' + (Game.viewport.y + Game.screen.tilesY));
     
-    for(yPos = 0; yPos < Game.screen.tilesY; yPos++) {
-      for(xPos = 0; xPos < Game.screen.tilesX; xPos++) {
+    for(yPos = -Game.viewport.overflowTile; yPos < jMax; yPos++) {
+      for(xPos = -Game.viewport.overflowTile; xPos < iMax; xPos++) {
         mapX = xPos + Game.viewport.x;
         mapY = yPos + Game.viewport.y;
         tile = (Game.currentMap[mapY] && Game.currentMap[mapY][mapX]) ? Game.currentMap[mapY][mapX] : {ground: 0};
@@ -109,12 +117,16 @@ Game.draw = function(mapData) {
 
 Game.start = function(mapData, x, y) {
   Game.handle.translate(0,0);
-  Game.debug('starting...');
+  Game.debug('loading...');
   Game.viewport.x = x;
   Game.viewport.y = y;
   Game.tile.store(0, 'images/tile_black.png');
   Game.tile.store(1, 'images/tile_grass.png');
   Game.tile.store(2, 'images/tile_rock.png');
+	Game.tile.store(3, 'images/ladderdown.png');
+	Game.tile.store(4, 'images/ladderup.png');
+	Game.tile.store(5, 'images/cave.png');
+	Game.tile.store(6, 'images/sign.png');
 	Game.setMap(mapData);
 	
 	Game.player.store(0, 'images/scientist_n0.png');
@@ -131,5 +143,7 @@ Game.start = function(mapData, x, y) {
 	Game.player.store(11, 'images/scientist_w2.png');
 	
   Game.draw();
-  Game.debug('done');
+	Game.keyboard.canInput = true;
+  Game.debug('complete');
+	Game.debug('Walk using W A S D, and the spacebar for actions.');
 };
