@@ -66,8 +66,7 @@ Game.player.move = function(direction) {
 	var toX = Game.viewport.x + (Game.screen.tilesX / 2 - 0.5) - x;
 	var toY = Game.viewport.y + (Game.screen.tilesY / 2 - 0.5) - y;
 	
-	if(Game.currentMap[toX] && 
-		Game.currentMap[toY] && 
+	if(Game.currentMap[toY] && 
 		Game.currentMap[toY][toX].item && 
 		(Game.currentMap[toY][toX].item == 2 ||
 		 Game.currentMap[toY][toX].item == 6)) {
